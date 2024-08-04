@@ -13,3 +13,4 @@ ENV PATH="$PATH:/usr/games"
 EXPOSE 4499
 
 CMD ["bash", "/usr/local/bin/wisdom.sh"]
+
