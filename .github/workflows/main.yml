@@ -28,7 +28,7 @@ jobs:
         context: .
         push: true
         tags: |
-          khuntia1234/wisecow:latest
+          khuntia1234/wisecow:v${{ github.run_number }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,4 +47,5 @@ jobs:
         port: 22
         script: |
           cd /home/ubuntu/wisecow/
+          sed -i "s|khuntia1234/wisecow:.*|khuntia1234/wisecow:v${{ github.run_number }}|g" wisecow.yaml
           kubectl apply -f wisecow.yaml
