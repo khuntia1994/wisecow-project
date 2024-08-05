@@ -19,7 +19,7 @@ handleRequest() {
 cat <<EOF > $RSPFILE
 HTTP/1.1 200
 
-
+ 
 <pre>`cowsay $mod`</pre>
 EOF
 }
