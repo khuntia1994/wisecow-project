@@ -6,7 +6,8 @@ on:
       - 'wisecow.sh'
       - 'Dockerfile'
     branches:
-      - main
+      - 'main'
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
