@@ -29,12 +29,20 @@ jobs:
       id: extract_version
       run: |
         VERSION=$(head -1 wisecow.sh | grep -oP 'VERSION:\s*\K[^\s]+')
-        echo "version=$VERSION" >> $GITHUB_ENV
+        echo "VERSION=$VERSION"
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/your_image_name:latest,${{ secrets.DOCKERHUB_USERNAME }}/your_image_name:${{ env.version }}
+        tags: |
+          yourdockerhubusername/wisecow-project:${{ env.VERSION }}
+          yourdockerhubusername/wisecow-project:latest
+
+    # Optional: Print environment for debugging
+    - name: Print environment
+      run: env
+image_name:${{ env.version }}
 
