@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Change to your default branch if it's not 'main'
+      - main  # Adjust if your default branch is different
 
 jobs:
   build-and-push:
@@ -22,18 +22,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Extract metadata (tags) for Docker
-      id: meta
-      uses: docker/metadata-action@v4
-      with:
-        images: khuntia1234/wisecow
-
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
+        tags: |
+          khuntia1234/wisecow:latest
+          khuntia1234/wisecow:${{ github.run_number }}
 
   deploy:
     runs-on: ubuntu-latest
