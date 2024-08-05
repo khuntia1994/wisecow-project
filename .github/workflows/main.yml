@@ -29,7 +29,6 @@ jobs:
         push: true
         tags: |
           khuntia1234/wisecow:latest
-          khuntia1234/wisecow:${{ github.run_number }}
 
   deploy:
     runs-on: ubuntu-latest
