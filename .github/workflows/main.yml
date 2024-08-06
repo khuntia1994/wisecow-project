@@ -44,7 +44,7 @@ jobs:
           echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
 
       - name: Transfer Kubernetes manifests to EC2
-        uses: appleboy/scp-action@vmaster
+        uses: appleboy/scp-action@v1.0.4
         with:
           host: ${{ secrets.AWS_EC2_HOST }}
           username: ubuntu
