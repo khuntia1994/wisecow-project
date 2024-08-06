@@ -43,6 +43,15 @@ jobs:
         mkdir -p $HOME/.kube
         echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
 
+    - name: Transfer Kubernetes manifests to EC2
+      uses: appleboy/scp-action@v0.1.0
+      with:
+        host: ${{ secrets.AWS_EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.AWS_SSH_KEY }}
+        source: "wisecow.yaml,wisecow-srv.yaml"
+        target: "/home/ubuntu/wisecow/"
+
     - name: SSH into AWS EC2 and apply Kubernetes manifests
       uses: appleboy/ssh-action@master
       with:
