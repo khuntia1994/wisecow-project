@@ -40,6 +40,7 @@ jobs:
 
     - name: Set up Kubernetes config
       run: |
+        mkdir -p $HOME/.kube
         echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
 
     - name: SSH into AWS EC2 and apply Kubernetes manifests
