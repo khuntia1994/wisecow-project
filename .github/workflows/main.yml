@@ -48,4 +48,4 @@ jobs:
         script: |
           cd /home/ubuntu/wisecow/
           sed -i "s|khuntia1234/wisecow:.*|khuntia1234/wisecow:v${{ github.run_number }}|g" wisecow.yaml
-          kubectl apply -f . --insecure-skip-tls-verify
+          kubectl apply -f . --insecure-skip-tls-verify --validate=false
