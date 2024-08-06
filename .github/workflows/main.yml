@@ -39,7 +39,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: SSH into AWS EC2 and apply Kubernetes manifest
-      uses: appleboy/ssh-action@v1.0.3
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.AWS_EC2_HOST }}
         username: ubuntu
@@ -48,4 +48,4 @@ jobs:
         script: |
           cd /home/ubuntu/wisecow/
           sed -i "s|khuntia1234/wisecow:.*|khuntia1234/wisecow:v${{ github.run_number }}|g" wisecow.yaml
-          kubectl apply -f . --validate=false
+          kubectl apply -f .
